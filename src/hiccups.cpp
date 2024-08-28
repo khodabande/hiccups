@@ -140,29 +140,22 @@ int main(int argc, char *argv[]) {
   }
 
   // print statistics
-  std::cout << "cpu threshold_ns hiccups pct99_ns pct999_ns max_ns\n";
-  for (auto &[cpu, s] : samples) {
-    std::sort(s.begin(), s.end());
-    std::cout << cpu << " " << threshold.count() << " " << s.size() << " "
-              << (s.empty() ? 0 : s[s.size() * 0.99].count()) << " "
-              << (s.empty() ? 0 : s[s.size() * 0.999].count()) << " "
-              << (s.empty() ? 0 : s.back().count()) << std::endl;
-  }
-  
-  FILE* out = fopen("~/hiccups_output.txt", "w");
-  if (!out) {
-	  printf("Error opening the output file!");
-	  return -1;
-  }
+  // std::cout << "cpu threshold_ns hiccups pct99_ns pct999_ns max_ns\n";
+  // for (auto &[cpu, s] : samples) {
+  //   std::sort(s.begin(), s.end());
+  //   std::cout << cpu << " " << threshold.count() << " " << s.size() << " "
+  //             << (s.empty() ? 0 : s[s.size() * 0.99].count()) << " "
+  //             << (s.empty() ? 0 : s[s.size() * 0.999].count()) << " "
+  //             << (s.empty() ? 0 : s.back().count()) << std::endl;
+  // }
 
   for (auto &[cpu, s] : samples) {
-    fprintf(out, "CPU %d:\n", cpu);
+    printf(out, "CPU %d:\n", cpu);
 	  for (auto &x : s) {
-		  fprintf(out, "%ld, ", x.count());
+		  printf(out, "%ld, ", x.count());
 	  }
-	  fprintf(out, "\n");
+	  printf(out, "\n");
   }
-  fclose(out);
-  
+
   return 0;
 }
