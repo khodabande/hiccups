@@ -149,18 +149,18 @@ int main(int argc, char *argv[]) {
               << (s.empty() ? 0 : s.back().count()) << std::endl;
   }
   
-  FILE* out = fopen("output.py", "w");
+  FILE* out = fopen("/home/$USER/hiccups_output.txt", "w");
   if (!out) {
-	  printf("Errro opening the output file!");
+	  printf("Error opening the output file!");
 	  return -1;
   }
 
   for (auto &[cpu, s] : samples) {
-    fprintf(out, "cpu%d=[", cpu);
+    fprintf(out, "CPU %d:\n", cpu);
 	  for (auto &x : s) {
-		  fprintf(out, "%ld,", x.count());
+		  fprintf(out, "%ld, ", x.count());
 	  }
-	  fprintf(out, "]\n");
+	  fprintf(out, "\n");
   }
   fclose(out);
   
