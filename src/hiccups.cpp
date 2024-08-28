@@ -148,6 +148,21 @@ int main(int argc, char *argv[]) {
               << (s.empty() ? 0 : s[s.size() * 0.999].count()) << " "
               << (s.empty() ? 0 : s.back().count()) << std::endl;
   }
+  
+  FILE* out = fopen("output.py", "w");
+  if (!out) {
+	  printf("Errro opening the output file!");
+	  return -1;
+  }
 
+  for (auto &[cpu, s] : samples) {
+    fprintf(out, "cpu%d=[", cpu);
+	  for (auto &x : s) {
+		  fprintf(out, "%ld,", x.count());
+	  }
+	  fprintf(out, "]\n");
+  }
+  fclose(out);
+  
   return 0;
 }
