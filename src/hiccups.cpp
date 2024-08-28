@@ -149,7 +149,7 @@ int main(int argc, char *argv[]) {
               << (s.empty() ? 0 : s.back().count()) << std::endl;
   }
   
-  FILE* out = fopen("/home/$USER/hiccups_output.txt", "w");
+  FILE* out = fopen("~/hiccups_output.txt", "w");
   if (!out) {
 	  printf("Error opening the output file!");
 	  return -1;
