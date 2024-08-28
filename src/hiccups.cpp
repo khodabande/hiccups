@@ -150,11 +150,11 @@ int main(int argc, char *argv[]) {
   // }
 
   for (auto &[cpu, s] : samples) {
-    printf(out, "CPU %d:\n", cpu);
+    printf("CPU %d:\n", cpu);
 	  for (auto &x : s) {
-		  printf(out, "%ld, ", x.count());
+		  printf("%ld, ", x.count());
 	  }
-	  printf(out, "\n");
+	  printf("\n");
   }
 
   return 0;
